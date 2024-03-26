@@ -2,15 +2,16 @@ addEventListener("fetch", (event) => {
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
 });
+const domain = env.DOMAIN;
 
 const routes = {
-  "docker.libcuda.so": "https://registry-1.docker.io",
-  "quay.libcuda.so": "https://quay.io",
-  "gcr.libcuda.so": "https://gcr.io",
-  "k8s-gcr.libcuda.so": "https://k8s.gcr.io",
-  "k8s.libcuda.so": "https://registry.k8s.io",
-  "ghcr.libcuda.so": "https://ghcr.io",
-  "cloudsmith.libcuda.so": "https://docker.cloudsmith.io",
+  `docker.${domain}`: "https://registry-1.docker.io",
+  `quay.${domain}`: "https://quay.io",
+  `gcr.${domain}`: "https://gcr.io",
+  `k8s-gcr.${domain}`: "https://k8s.gcr.io",
+  `k8s.${domain}`: "https://registry.k8s.io",
+  `ghcr.${domain}`: "https://ghcr.io",
+  `cloudsmith.${domain}`: "https://docker.cloudsmith.io",
 };
 
 function routeByHosts(host) {
